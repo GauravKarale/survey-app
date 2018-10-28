@@ -60,8 +60,7 @@ POST call
 
 
 GET call
-
-
+```
 [
     {
         "surveyId": 1,
@@ -125,10 +124,11 @@ GET call
     }
 ]    
 
+```
 
 
 PUT 
-
+```
 {
         "surveyId": 2,
         "startDate": 1540105200000,
@@ -159,7 +159,7 @@ PUT
             }
         ]
     }
-
+```
 
 Delete 
 
@@ -173,7 +173,7 @@ Questions
 
 GET call
 
-
+```
 [
     {
         "questionId": 1,
@@ -220,10 +220,11 @@ GET call
         ]
     }
 ]
-
+```
 
 POST call
 
+```
 {
         "questionId": 3,
         "text": "Which language do you use for function programming in 2020?",
@@ -246,10 +247,11 @@ POST call
             }
         ]
     }
-
+```
 
 PUT Call
 
+```
 {
         "questionId": 3,
         "text": "Which language do you use for function programming in 2020?",
@@ -272,6 +274,7 @@ PUT Call
             }
         ]
     }
+```
 
 Delete call
 
@@ -287,6 +290,7 @@ Get call
 
 http://localhost:8080/response/1
 
+```
 {
     "response_id": 1,
     "surveyId": 1,
@@ -318,12 +322,13 @@ http://localhost:8080/response/1
         ]
     }
 }
-
+```
 
 GET response distribution
 
 http://localhost:8080/response/survey/1/question/1
 
+```
 {
     "question": "Which language do you use for OOP ?",
     "totalResponseReceived": 6,
@@ -334,9 +339,10 @@ http://localhost:8080/response/survey/1/question/1
         "Python": "16.0%"
     }
 }
-
+```
 Post http://localhost:8080/response
 
+```
 {
     "responseId":7,
     "surveyId": 1,
@@ -344,10 +350,10 @@ Post http://localhost:8080/response
     "answerId": 1,
     "questionId": 1
 }
-
+```
 
 PUT http://localhost:8080/response
-
+```
 {
     "responseId":7,
     "surveyId": 1,
@@ -355,7 +361,7 @@ PUT http://localhost:8080/response
     "answerId": 1,
     "questionId": 1
 }
-
+```
 
 Delete http://localhost:8080/response/1
 
