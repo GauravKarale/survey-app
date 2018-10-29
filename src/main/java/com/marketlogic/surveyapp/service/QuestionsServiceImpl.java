@@ -3,7 +3,9 @@ package com.marketlogic.surveyapp.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import com.marketlogic.surveyapp.model.Question;
 import com.marketlogic.surveyapp.repository.QuestionRepository;
@@ -15,7 +17,15 @@ public class QuestionsServiceImpl implements QuestionService{
 	
 	@Override
 	public Question getQuestionById(Integer id) {
-		return questionRepo.findOne(id);
+		if (id == null) {
+			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Input format is wrong");
+		}
+		Question question= questionRepo.findOne(id);
+		
+		if (question == null) {
+			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "No question are found for requested id" + id);
+		}
+		return question;
 	}
 
 	@Override
@@ -25,7 +35,12 @@ public class QuestionsServiceImpl implements QuestionService{
 
 	@Override
 	public List<Question> getAllQuestion() {
-		return questionRepo.findAll();
+		List<Question> questionList= questionRepo.findAll();
+		
+		if (questionList == null || questionList.size()==0) {
+			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "No questions found");
+		}
+		return questionList;
 	}
 
 	@Override
@@ -37,5 +52,4 @@ public class QuestionsServiceImpl implements QuestionService{
 	public void updateQuestion(Question question) {
 		questionRepo.save(question);
 	}
-
 }

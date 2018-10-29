@@ -17,20 +17,19 @@ CREATE TABLE survey_questions(
 
 
 CREATE TABLE answer(
-   QUESTION_ID INTEGER ,
    ANSWER_ID INTEGER  ,
    ANSWER_TEXT VARCHAR(600),
-   PRIMARY KEY (QUESTION_ID, ANSWER_ID)
+   PRIMARY KEY (ANSWER_ID)
 );
 
 
-/*CREATE TABLE question_answer(
+CREATE TABLE question_answer(
    QUESTION_ID  INTEGER,
    ANSWER_ID INTEGER
-);*/
+);
 
 CREATE TABLE response(
-    response_id INTEGER PRIMARY KEY ,
+    response_id INTEGER,
 	survey_id INTEGER ,
 	question_id INTEGER ,
 	user_id INTEGER ,

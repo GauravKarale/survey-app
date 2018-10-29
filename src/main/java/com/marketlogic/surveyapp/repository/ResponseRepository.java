@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import com.marketlogic.surveyapp.model.Response;
-
+@Repository
 public interface ResponseRepository extends JpaRepository<Response, Integer>{
 
 	@Query(value = "SELECT * FROM RESPONSE WHERE SURVEY_ID = ?1 AND  QUESTION_ID =?2", nativeQuery = true)

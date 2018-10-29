@@ -2,18 +2,16 @@ package com.marketlogic.surveyapp.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.data.annotation.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -28,9 +26,8 @@ public class Response implements Serializable{
 	private static final long serialVersionUID = 3485503575007913117L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="response_id")
-	private Integer response_id;
+	private Integer responseId;
 	
 	@Column(name="question_id")
 	private Integer questionId;
@@ -42,26 +39,24 @@ public class Response implements Serializable{
 	private Integer userId;
 	
 	@Column(name="answer_id")
-	private Integer answer_id; 
+	private Integer answerId; 
 	
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@Transient
+	@OneToOne(fetch = FetchType.EAGER)
 	 @JoinColumns({
-	        @JoinColumn(
-	            name = "question_id",
-	            referencedColumnName = "question_id",updatable = false, insertable = false)
-	    ,@JoinColumn(
+	       @JoinColumn(
 	            name = "answer_id",
 	            referencedColumnName = "answer_id",updatable = false, insertable = false),
 	    })
 	private Answer answer;
 	
-	
+	@Transient
 	@OneToOne(fetch = FetchType.EAGER)
-	 @JoinColumns({
+	@JoinColumns({
 	        @JoinColumn(
 	            name = "question_id",
 	            referencedColumnName = "question_id",updatable = false, insertable = false)
-	    })
+	})
 	private Question question;
 	
 	public Response(){
@@ -71,16 +66,15 @@ public class Response implements Serializable{
 		return answer;
 	}
 
-	public Integer getResponse_id() {
-		return response_id;
+	
+
+
+	public Integer getResponseId() {
+		return responseId;
 	}
 
-	public void setResponse_id(Integer response_id) {
-		this.response_id = response_id;
-	}
-
-	public Integer getQuestionId() {
-		return questionId;
+	public void setResponseId(Integer responseId) {
+		this.responseId = responseId;
 	}
 
 	public void setQuestionId(Integer questionId) {
@@ -103,15 +97,16 @@ public class Response implements Serializable{
 		this.userId = userId;
 	}
 
-	public Integer getAnswer_id() {
-		return answer_id;
-	}
-
-	public void setAnswer_id(Integer answer_id) {
-		this.answer_id = answer_id;
-	}
 
 	public Question getQuestion() {
 		return question;
 	}
+
+	@Override
+	public String toString() {
+		return "Response [responseId=" + responseId + ", questionId=" + questionId + ", surveyId=" + surveyId
+				+ ", userId=" + userId + ", answerId=" + answerId + "]";
+	}
+	
+	
 }

@@ -18,46 +18,44 @@ import com.marketlogic.surveyapp.service.QuestionService;
 @RestController
 @RequestMapping("/questions")
 public class QuestionsController {
-	
+
 	@Autowired
 	@Qualifier("questionService")
 	QuestionService service;
 
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public Question getQuestion(@PathVariable int id){
+	public Question getQuestion(@PathVariable int id) {
 		return service.getQuestionById(id);
 	}
-	
-	
-	@RequestMapping(value="/{id}/answer/{answerId}",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/{id}/answer/{answerId}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public Question getQuestion(@PathVariable int id, @PathVariable int answerId){
+	public Question getQuestion(@PathVariable int id, @PathVariable int answerId) {
 		return service.getQuestionById(id);
 	}
-	
-	
-	@RequestMapping(method=RequestMethod.GET)
+
+	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public List<Question> getSurveys(){
+	public List<Question> getSurveys() {
 		return service.getAllQuestion();
 	}
-	
-	@RequestMapping(method=RequestMethod.POST)
+
+	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public void createQuestions(@RequestBody Question question){
+	public void createQuestions(@RequestBody Question question) {
 		service.createQuestion(question);
 	}
-	
-	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
-	public void deleteQuestion(@PathVariable int id){
+	public void deleteQuestion(@PathVariable int id) {
 		service.deleteQuestion(id);
 	}
-	
-	@RequestMapping(method=RequestMethod.PUT)
+
+	@RequestMapping(method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
-	public void updateQuestions(@RequestBody Question question){
+	public void updateQuestions(@RequestBody Question question) {
 		service.updateQuestion(question);
 	}
 }

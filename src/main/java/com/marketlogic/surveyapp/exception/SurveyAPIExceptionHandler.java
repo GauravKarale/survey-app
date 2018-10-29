@@ -19,8 +19,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
  * 
  * Author: Gaurav Karale
  * version 1.0.0
- * Date :- 06/05/2017
- * Info :-Exception handler for AV shopping api 
+ * Info :-Exception handler for Survey App
  * */
 @Component
 @ControllerAdvice
@@ -53,15 +52,6 @@ public class SurveyAPIExceptionHandler extends ResponseEntityExceptionHandler{
 		log.debug("customErrorMessage : "+exceptionResponse);
 		return new ResponseEntity<CustomErrorMessage>(exceptionResponse,new HttpHeaders(),HttpStatus.BAD_REQUEST);
 	}
-	
-	
-	/*@ExceptionHandler(MongoException.class)
-	public final ResponseEntity<CustomErrorMessage> mongoExceptionHandler(MongoException ex){
-		log.info("in mongoExceptionHandler");
-		CustomErrorMessage exceptionResponse= new CustomErrorMessage(ex.getMessage()," Product details are not available in mongo dbcollection 'productprice' ");
-		log.debug("customErrorMessage : "+exceptionResponse);
-		return new ResponseEntity<CustomErrorMessage>(exceptionResponse,new HttpHeaders(),HttpStatus.NOT_FOUND);
-	}*/
 	
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<CustomErrorMessage> exceptionHandler(Exception ex){

@@ -1,7 +1,5 @@
 package com.marketlogic.surveyapp.controller;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -22,34 +20,35 @@ public class ResponseController {
 	@Autowired
 	@Qualifier("responseService")
 	private ResponseService service;
-	
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public Response getResponse(@PathVariable int id){
+	public Response getResponse(@PathVariable int id) {
 		return service.getResponse(id);
 	}
-	
-	@RequestMapping(value="survey/{surveyId}/question/{questionId}",method=RequestMethod.GET)
+
+	@RequestMapping(value = "survey/{surveyId}/question/{questionId}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseStatics getSurveyStatics(@PathVariable int surveyId,@PathVariable int questionId){
+	public ResponseStatics getSurveyStatics(@PathVariable int surveyId, @PathVariable int questionId) {
 		return service.getSurveyStats(surveyId, questionId);
 	}
-	
-	@RequestMapping(method=RequestMethod.POST)
+
+	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public void createResponse(Response response){
+	public void createResponse(Response response) {
+		System.out.println("response: " + response.toString());
 		service.createResponse(response);
 	}
-	
-	@RequestMapping(method=RequestMethod.PUT)
+
+	@RequestMapping(method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
-	public void updateResponse(Response response){
+	public void updateResponse(Response response) {
 		service.createResponse(response);
 	}
-	
-	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
-	public void deleteResponse(@PathVariable int id){
+	public void deleteResponse(@PathVariable int id) {
 		service.deleteResponse(id);
 	}
 }

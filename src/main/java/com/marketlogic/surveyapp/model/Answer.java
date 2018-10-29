@@ -3,67 +3,39 @@ package com.marketlogic.surveyapp.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity(name="Answer")
-@Table(name="answer")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Answer implements Serializable{
+@Entity(name = "Answer")
+@Table(name = "answer")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class Answer implements Serializable {
 
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5795825348267655634L;
 
-	/*@Id
-	@Column(name="answer_id")
+	@Id
+	@Column(name = "answer_id")
 	private Integer answerId;
-	
-	
-	@Column(name="question_id")
-	private Integer questionId;*/
-	@EmbeddedId
-	private AnswerCompositeKey answerCompositeKey;
-	
-	@Column(name="answer_text")
+
+	@Column(name = "answer_text")
 	private String answerText;
-	
-	public Answer(){
+
+	public Answer() {
 	}
-	
-	
 
-	/*public void setQuestionId(Integer questionId) {
-		this.questionId = questionId;
-	}
-*/
-
-
-
-	/*public Integer getAnswerId() {
+	public Integer getAnswerId() {
 		return answerId;
 	}
 
 	public void setAnswerId(Integer answerId) {
 		this.answerId = answerId;
-	}*/
-
-	public void setAnswerCompositeKey(AnswerCompositeKey answerCompositeKey) {
-		this.answerCompositeKey = answerCompositeKey;
 	}
-
-
-
-	public AnswerCompositeKey getAnswerCompositeKey() {
-		return answerCompositeKey;
-	}
-
-
 
 	public String getAnswerText() {
 		return answerText;
